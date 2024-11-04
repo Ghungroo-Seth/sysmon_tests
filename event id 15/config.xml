@@ -1,0 +1,17 @@
+<Sysmon schemaversion="4.82">
+	<!-- Hashing algorithms that can be used are md5,sha1,sha256,imphash or * for all,
+  more than once can be specified separated by using comas -->
+	<HashAlgorithms>*</HashAlgorithms>
+	<!-- Checking for signature revocation for drivers. -->
+	<CheckRevocation/>
+	<EventFiltering>
+		<!-- Disable Process Creation logging -->
+		<ProcessCreate onmatch="include"></ProcessCreate>
+		<!-- Disable Process Termination logging -->
+		<ProcessTerminate onmatch="include"></ProcessTerminate>
+		<!-- Enable ADS events where target is a .TXT file -->
+		<FileCreateStreamHash onmatch="include">
+			<TargetFilename condition="contains">.txt</TargetFilename>
+		</FileCreateStreamHash>
+	</EventFiltering>
+</Sysmon>
